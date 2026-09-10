@@ -5,457 +5,479 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Gestor de estoque, caixa, relatórios e recibos para pequenos negócios.">
   <title>Estoque & Caixa — Gestor da loja</title>
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMjggMTI4Ij4KICA8cmVjdCB3aWR0aD0iMTI4IiBoZWlnaHQ9IjEyOCIgcng9IjI4IiBmaWxsPSIjMjU2M0VCIi8+CiAgPHJlY3QgeD0iMjUiIHk9IjI3IiB3aWR0aD0iNzgiIGhlaWdodD0iNzIiIHJ4PSIxMCIgZmlsbD0iI2ZmZiIvPgogIDxwYXRoIGQ9Ik0zNSA0Nmg1OE0zNSA2M2g1OE0zNSA4MGgzNCIgc3Ryb2tlPSIjMjU2M0VCIiBzdHJva2Utd2lkdGg9IjgiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPgogIDxjaXJjbGUgY3g9Ijg2IiBjeT0iODIiIHI9IjE0IiBmaWxsPSIjMEY5RDZFIi8+CiAgPHBhdGggZD0ibTc5IDgyIDUgNSA5LTExIiBmaWxsPSJub25lIiBzdHJva2U9IiNmZmYiIHN0cm9rZS13aWR0aD0iNSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIi8+Cjwvc3ZnPgo=">
+
+  <link
+    rel="icon"
+    type="image/svg+xml"
+    href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMjggMTI4Ij4KICA8cmVjdCB3aWR0aD0iMTI4IiBoZWlnaHQ9IjEyOCIgcng9IjI4IiBmaWxsPSIjMjU2M0VCIi8+CiAgPHJlY3QgeD0iMjUiIHk9IjI3IiB3aWR0aD0iNzgiIGhlaWdodD0iNzIiIHJ4PSIxMCIgZmlsbD0iI2ZmZiIvPgogIDxwYXRoIGQ9Ik0zNSA0Nmg1OE0zNSA2M2g1OE0zNSA4MGgzNCIgc3Ryb2tlPSIjMjU2M0VCIiBzdHJva2Utd2lkdGg9IjgiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPgogIDxjaXJjbGUgY3g9Ijg2IiBjeT0iODIiIHI9IjE0IiBmaWxsPSIjMEY5RDZFIi8+CiAgPHBhdGggZD0ibTc5IDgyIDUgNSA5LTExIiBmaWxsPSJub25lIiBzdHJva2U9IiNmZmYiIHN0cm9rZS13aWR0aD0iNSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIi8+Cjwvc3ZnPgo="
+  >
 
   <style>
-    :root{
-      --blue:#2563eb;
-      --blue-dark:#1d4ed8;
-      --ink:#172033;
-      --muted:#6b7280;
-      --bg:#f7f8fc;
-      --card:#fff;
-      --line:#e8ebf2;
-      --green:#0f9d6e;
-      --red:#d83a56;
-      --shadow:0 8px 25px rgba(23,32,51,.06)
+    :root {
+      --blue: #2563eb;
+      --blue-dark: #1d4ed8;
+      --ink: #172033;
+      --muted: #6b7280;
+      --bg: #f7f8fc;
+      --card: #ffffff;
+      --line: #e8ebf2;
+      --green: #0f9d6e;
+      --red: #d83a56;
+      --shadow: 0 8px 25px rgba(23, 32, 51, .06);
     }
 
-    *{box-sizing:border-box}
-
-    body{
-      margin:0;
-      background:var(--bg);
-      color:var(--ink);
-      font:15px/1.45 Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif
+    * {
+      box-sizing: border-box;
     }
 
-    button,input,select{font:inherit}
-
-    button{
-      border:0;
-      cursor:pointer
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font: 15px/1.45 Inter, system-ui, -apple-system, BlinkMacSystemFont,
+        "Segoe UI", Roboto, Arial, sans-serif;
     }
 
-    .shell{
-      max-width:1120px;
-      margin:auto;
-      padding:24px 18px 48px
+    button,
+    input,
+    select {
+      font: inherit;
     }
 
-    header{
-      display:flex;
-      align-items:center;
-      gap:14px;
-      margin-bottom:20px
+    button {
+      border: 0;
+      cursor: pointer;
     }
 
-    .logo{
-      width:72px;
-      height:72px;
-      border:1px solid #dce1eb;
-      border-radius:18px;
-      background:#fff;
-      display:grid;
-      place-items:center;
-      overflow:hidden;
-      cursor:pointer
+    .shell {
+      max-width: 1120px;
+      margin: auto;
+      padding: 24px 18px 48px;
     }
 
-    .logo img{
-      width:100%;
-      height:100%;
-      object-fit:cover
+    header {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 20px;
     }
 
-    .logo span{
-      font-size:27px;
-      color:var(--blue)
+    .logo {
+      width: 72px;
+      height: 72px;
+      border: 1px solid #dce1eb;
+      border-radius: 18px;
+      background: #fff;
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+      cursor: pointer;
     }
 
-    .brand{
-      flex:1
+    .logo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
     }
 
-    .brand h1{
-      font-size:24px;
-      line-height:1.1;
-      margin:0 0 4px
+    .logo span {
+      font-size: 27px;
+      color: var(--blue);
     }
 
-    .brand p{
-      color:var(--muted);
-      margin:0
+    .brand {
+      flex: 1;
     }
 
-    .link-btn{
-      background:none;
-      color:var(--blue);
-      padding:0;
-      text-decoration:underline
+    .brand h1 {
+      font-size: 24px;
+      line-height: 1.1;
+      margin: 0 0 4px;
     }
 
-    nav{
-      display:grid;
-      grid-template-columns:repeat(5,1fr);
-      gap:8px;
-      margin-bottom:22px
+    .brand p {
+      color: var(--muted);
+      margin: 0;
     }
 
-    .tab{
-      padding:12px 8px;
-      border-radius:12px;
-      background:#bec6d5;
-      color:#fff;
-      font-weight:700
+    .link-btn {
+      background: none;
+      color: var(--blue);
+      padding: 0;
+      text-decoration: underline;
     }
 
-    .tab.active{
-      background:var(--blue)
+    nav {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 8px;
+      margin-bottom: 22px;
     }
 
-    .view{
-      display:none
+    .tab {
+      padding: 12px 8px;
+      border-radius: 12px;
+      background: #bec6d5;
+      color: #fff;
+      font-weight: 700;
     }
 
-    .view.active{
-      display:block
+    .tab.active {
+      background: var(--blue);
     }
 
-    .section-title{
-      font-size:22px;
-      margin:0 0 15px
+    .view {
+      display: none;
     }
 
-    .sub-title{
-      font-size:18px;
-      margin:24px 0 12px
+    .view.active {
+      display: block;
     }
 
-    .cards{
-      display:grid;
-      grid-template-columns:repeat(4,1fr);
-      gap:12px
+    .section-title {
+      font-size: 22px;
+      margin: 0 0 15px;
     }
 
-    .card,.panel,.row{
-      background:var(--card);
-      border:1px solid var(--line);
-      border-radius:16px;
-      box-shadow:var(--shadow)
+    .sub-title {
+      font-size: 18px;
+      margin: 24px 0 12px;
     }
 
-    .card{
-      padding:16px
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
     }
 
-    .card small{
-      color:var(--muted);
-      display:block;
-      margin-bottom:8px
+    .card,
+    .panel,
+    .row {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      box-shadow: var(--shadow);
     }
 
-    .card strong{
-      font-size:21px
+    .card {
+      padding: 16px;
     }
 
-    .toolbar{
-      display:flex;
-      gap:10px;
-      flex-wrap:wrap;
-      margin:20px 0 13px
+    .card small {
+      color: var(--muted);
+      display: block;
+      margin-bottom: 8px;
     }
 
-    .primary,.secondary,.danger{
-      border-radius:11px;
-      padding:12px 16px;
-      font-weight:700
+    .card strong {
+      font-size: 21px;
     }
 
-    .primary{
-      background:var(--blue);
-      color:#fff
+    .toolbar {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin: 20px 0 13px;
     }
 
-    .primary:hover{
-      background:var(--blue-dark)
+    .primary,
+    .secondary,
+    .danger {
+      border-radius: 11px;
+      padding: 12px 16px;
+      font-weight: 700;
     }
 
-    .secondary{
-      background:#465670;
-      color:#fff
+    .primary {
+      background: var(--blue);
+      color: #fff;
     }
 
-    .danger{
-      background:#fff;
-      color:var(--red);
-      border:1px solid #f0c8d0
+    .primary:hover {
+      background: var(--blue-dark);
     }
 
-    .list{
-      display:grid;
-      gap:10px
+    .secondary {
+      background: #465670;
+      color: #fff;
     }
 
-    .row{
-      padding:13px 15px;
-      display:flex;
-      gap:12px;
-      align-items:center
+    .danger {
+      background: #fff;
+      color: var(--red);
+      border: 1px solid #f0c8d0;
     }
 
-    .row-main{
-      flex:1;
-      min-width:0
+    .list {
+      display: grid;
+      gap: 10px;
     }
 
-    .row-title{
-      font-weight:750;
-      font-size:16px
+    .row {
+      padding: 13px 15px;
+      display: flex;
+      gap: 12px;
+      align-items: center;
     }
 
-    .row-meta{
-      color:var(--muted);
-      font-size:13px
+    .row-main {
+      flex: 1;
+      min-width: 0;
     }
 
-    .qty{
-      font-weight:800;
-      white-space:nowrap
+    .row-title {
+      font-weight: 750;
+      font-size: 16px;
     }
 
-    .positive{
-      color:var(--green)
+    .row-meta {
+      color: var(--muted);
+      font-size: 13px;
     }
 
-    .negative{
-      color:var(--red)
+    .qty {
+      font-weight: 800;
+      white-space: nowrap;
     }
 
-    .clickable{
-      cursor:pointer
+    .positive {
+      color: var(--green);
     }
 
-    .empty{
-      padding:28px;
-      text-align:center;
-      color:var(--muted)
+    .negative {
+      color: var(--red);
     }
 
-    .report{
-      padding:20px
+    .clickable {
+      cursor: pointer;
     }
 
-    .report h3{
-      margin:0 0 12px
+    .empty {
+      padding: 28px;
+      text-align: center;
+      color: var(--muted);
     }
 
-    .report p{
-      margin:6px 0;
-      color:var(--muted)
+    .report {
+      padding: 20px;
     }
 
-    .report-line{
-      white-space:pre-line
+    .report h3 {
+      margin: 0 0 12px;
     }
 
-    .receipt{
-      max-width:420px;
-      margin:0 auto;
-      text-align:center
+    .report p {
+      margin: 6px 0;
+      color: var(--muted);
     }
 
-    .receipt h2{
-      margin:0 0 3px
+    .report-line {
+      white-space: pre-line;
     }
 
-    .receipt .muted{
-      color:var(--muted)
+    .receipt {
+      max-width: 420px;
+      margin: 0 auto;
+      text-align: center;
     }
 
-    .receipt .total{
-      font-size:28px;
-      font-weight:800;
-      margin:18px 0
+    .receipt h2 {
+      margin: 0 0 3px;
     }
 
-    .receipt .detail{
-      text-align:left;
-      background:#f7f8fc;
-      border-radius:12px;
-      padding:15px;
-      margin-top:15px
+    .receipt .muted {
+      color: var(--muted);
     }
 
-    .modal-backdrop{
-      display:none;
-      position:fixed;
-      inset:0;
-      background:rgba(23,32,51,.48);
-      z-index:10;
-      padding:18px;
-      overflow:auto
+    .receipt .total {
+      font-size: 28px;
+      font-weight: 800;
+      margin: 18px 0;
     }
 
-    .modal-backdrop.open{
-      display:grid;
-      place-items:center
+    .receipt .detail {
+      text-align: left;
+      background: #f7f8fc;
+      border-radius: 12px;
+      padding: 15px;
+      margin-top: 15px;
     }
 
-    .modal{
-      background:#fff;
-      border-radius:18px;
-      width:min(100%,520px);
-      padding:22px;
-      box-shadow:0 20px 60px rgba(0,0,0,.2)
+    .modal-backdrop {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(23, 32, 51, .48);
+      z-index: 10;
+      padding: 18px;
+      overflow: auto;
     }
 
-    .modal h2{
-      margin:0 0 15px
+    .modal-backdrop.open {
+      display: grid;
+      place-items: center;
     }
 
-    .modal label{
-      display:block;
-      font-weight:700;
-      margin:11px 0 5px
+    .modal {
+      background: #fff;
+      border-radius: 18px;
+      width: min(100%, 520px);
+      padding: 22px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, .2);
     }
 
-    .modal input,.modal select{
-      width:100%;
-      padding:11px 12px;
-      border:1px solid #dbe1eb;
-      border-radius:10px;
-      background:#fff
+    .modal h2 {
+      margin: 0 0 15px;
     }
 
-    .scan-tools{
-      display:flex;
-      gap:8px;
-      align-items:center
+    .modal label {
+      display: block;
+      font-weight: 700;
+      margin: 11px 0 5px;
     }
 
-    .scan-tools input{
-      flex:1
+    .modal input,
+    .modal select {
+      width: 100%;
+      padding: 11px 12px;
+      border: 1px solid #dbe1eb;
+      border-radius: 10px;
+      background: #fff;
     }
 
-    .scan-tools button{
-      white-space:nowrap;
-      padding:10px 12px;
-      border-radius:10px;
-      background:#465670;
-      color:#fff
+    .scan-tools {
+      display: flex;
+      gap: 8px;
+      align-items: center;
     }
 
-    .scanner-video{
-      width:100%;
-      max-height:300px;
-      min-height:190px;
-      object-fit:cover;
-      border-radius:14px;
-      background:#111;
-      margin:6px 0 10px
+    .scan-tools input {
+      flex: 1;
     }
 
-    .modal-actions{
-      display:flex;
-      justify-content:flex-end;
-      gap:10px;
-      margin-top:20px
+    .scan-tools button {
+      white-space: nowrap;
+      padding: 10px 12px;
+      border-radius: 10px;
+      background: #465670;
+      color: #fff;
     }
 
-    .hint{
-      font-size:13px;
-      color:var(--muted)
+    .scanner-video {
+      width: 100%;
+      max-height: 300px;
+      min-height: 190px;
+      object-fit: cover;
+      border-radius: 14px;
+      background: #111;
+      margin: 6px 0 10px;
     }
 
-    @media(max-width:760px){
-      .cards{
-        grid-template-columns:repeat(2,1fr)
+    .modal-actions {
+      display: flex;
+      justify-content: flex-end;
+      gap: 10px;
+      margin-top: 20px;
+    }
+
+    .hint {
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    @media (max-width: 760px) {
+      .cards {
+        grid-template-columns: repeat(2, 1fr);
       }
 
-      .shell{
-        padding:18px 12px 40px
+      .shell {
+        padding: 18px 12px 40px;
       }
 
-      header{
-        align-items:flex-start
+      header {
+        align-items: flex-start;
       }
 
-      .logo{
-        width:62px;
-        height:62px
+      .logo {
+        width: 62px;
+        height: 62px;
       }
 
-      .brand h1{
-        font-size:20px
+      .brand h1 {
+        font-size: 20px;
       }
 
-      nav{
-        gap:5px
+      nav {
+        gap: 5px;
       }
 
-      .tab{
-        font-size:12px;
-        padding:11px 4px
+      .tab {
+        font-size: 12px;
+        padding: 11px 4px;
       }
 
-      .row{
-        align-items:flex-start
+      .row {
+        align-items: flex-start;
       }
 
-      .row .primary{
-        padding:9px 10px;
-        font-size:12px
-      }
-    }
-
-    @media(max-width:430px){
-      .cards{
-        gap:8px
-      }
-
-      .card{
-        padding:12px
-      }
-
-      .card strong{
-        font-size:17px
-      }
-
-      .row{
-        padding:12px;
-        flex-wrap:wrap
-      }
-
-      .row>button{
-        width:100%
-      }
-
-      .row-main{
-        flex-basis:calc(100% - 70px)
+      .row .primary {
+        padding: 9px 10px;
+        font-size: 12px;
       }
     }
 
-    @media print{
-      body{
-        background:#fff
+    @media (max-width: 430px) {
+      .cards {
+        gap: 8px;
       }
 
-      .shell{
-        max-width:none;
-        padding:0
+      .card {
+        padding: 12px;
       }
 
-      header,nav,.toolbar,#view-stock,#view-cash{
-        display:none!important
+      .card strong {
+        font-size: 17px;
       }
 
-      #view-reports{
-        display:block
+      .row {
+        padding: 12px;
+        flex-wrap: wrap;
       }
 
-      .panel,.card{
-        box-shadow:none
+      .row > button {
+        width: 100%;
+      }
+
+      .row-main {
+        flex-basis: calc(100% - 70px);
+      }
+    }
+
+    @media print {
+      body {
+        background: #fff;
+      }
+
+      .shell {
+        max-width: none;
+        padding: 0;
+      }
+
+      header,
+      nav,
+      .toolbar,
+      #view-stock,
+      #view-cash {
+        display: none !important;
+      }
+
+      #view-reports {
+        display: block;
+      }
+
+      .panel,
+      .card {
+        box-shadow: none;
       }
     }
   </style>
@@ -472,19 +494,36 @@
 
       <div class="brand">
         <h1 id="storeName">Minha Loja</h1>
+
         <p>
           Gestor de estoque e caixa ·
-          <button class="link-btn" id="editStore">editar nome</button>
+          <button class="link-btn" id="editStore">
+            editar nome
+          </button>
         </p>
       </div>
     </header>
 
     <nav aria-label="Navegação principal">
-      <button class="tab active" data-view="dashboard">Visão geral</button>
-      <button class="tab" data-view="stock">Estoque</button>
-      <button class="tab" data-view="cash">Caixa</button>
-      <button class="tab" data-view="clients">Clientes</button>
-      <button class="tab" data-view="reports">Relatórios</button>
+      <button class="tab active" data-view="dashboard">
+        Visão geral
+      </button>
+
+      <button class="tab" data-view="stock">
+        Estoque
+      </button>
+
+      <button class="tab" data-view="cash">
+        Caixa
+      </button>
+
+      <button class="tab" data-view="clients">
+        Clientes
+      </button>
+
+      <button class="tab" data-view="reports">
+        Relatórios
+      </button>
     </nav>
 
     <section id="view-dashboard" class="view active">
@@ -512,6 +551,7 @@
 
       <div class="panel report">
         <h3>Comece pela sua operação</h3>
+
         <p>
           Cadastre seus produtos no estoque e registre entradas e saídas no caixa.
           Tudo fica salvo neste navegador.
@@ -618,7 +658,7 @@
           ...defaultState,
           ...JSON.parse(localStorage.getItem(KEY) || '{}')
         };
-      } catch (e) {
+      } catch (error) {
         return {
           ...defaultState
         };
@@ -679,7 +719,9 @@
       return items.map(item => `
         <div class="card">
           <small>${item[0]}</small>
-          <strong class="\({item[2] || ''}">\){item[1]}</strong>
+          <strong class="${item[2] || ''}">
+            ${item[1]}
+          </strong>
         </div>
       `).join('');
     }
@@ -703,19 +745,36 @@
       const total = totals();
 
       document.getElementById('dashboardCards').innerHTML = cards([
-        ['Unidades em estoque', total.units],
-        ['Valor do estoque', money.format(total.stock), 'positive'],
+        [
+          'Quantidade em estoque',
+          total.units
+        ],
+        [
+          'Valor do estoque',
+          money.format(total.stock),
+          'positive'
+        ],
         [
           'Saldo do caixa',
           money.format(total.balance),
           total.balance >= 0 ? 'positive' : 'negative'
         ],
-        ['Lançamentos', state.cash.length]
+        [
+          'Lançamentos',
+          state.cash.length
+        ]
       ]);
 
       document.getElementById('stockCards').innerHTML = cards([
-        ['Unidades', total.units],
-        ['Valor investido', money.format(total.stock), 'positive']
+        [
+          'Quantidade em estoque',
+          total.units
+        ],
+        [
+          'Valor investido',
+          money.format(total.stock),
+          'positive'
+        ]
       ]);
 
       document.getElementById('cashCards').innerHTML = cards([
@@ -724,9 +783,20 @@
           money.format(total.balance),
           total.balance >= 0 ? 'positive' : 'negative'
         ],
-        ['Entradas', money.format(total.income), 'positive'],
-        ['Saídas', money.format(total.expense), 'negative'],
-        ['Lançamentos', state.cash.length]
+        [
+          'Entradas',
+          money.format(total.income),
+          'positive'
+        ],
+        [
+          'Saídas',
+          money.format(total.expense),
+          'negative'
+        ],
+        [
+          'Lançamentos',
+          state.cash.length
+        ]
       ]);
 
       document.getElementById('productList').innerHTML =
@@ -734,14 +804,19 @@
           ? state.products.map((product, index) => `
             <div class="row">
               <div class="row-main">
-                <div class="row-title">${esc(product.name)}</div>
+                <div class="row-title">
+                  ${esc(product.name)}
+                </div>
+
                 <div class="row-meta">
                   Venda: ${money.format(val(product.price))}
                   · Custo: ${money.format(val(product.cost))}
                 </div>
               </div>
 
-              <div class="qty ${val(product.qty) <= 2 ? 'negative' : 'positive'}">
+              <div class="qty ${
+                val(product.qty) <= 2 ? 'negative' : 'positive'
+              }">
                 ${val(product.qty)} un.
               </div>
 
@@ -763,7 +838,8 @@
               .slice()
               .reverse()
               .map((entry, reverseIndex) => {
-                const index = state.cash.length - 1 - reverseIndex;
+                const index =
+                  state.cash.length - 1 - reverseIndex;
 
                 return `
                   <div class="row clickable" data-receipt="${index}">
@@ -774,15 +850,19 @@
 
                       <div class="row-meta">
                         ${esc(entry.date)}
-                        ${entry.customer
-                          ? ' · Cliente: ' + esc(entry.customer)
-                          : ''}
+                        ${
+                          entry.customer
+                            ? ' · Cliente: ' + esc(entry.customer)
+                            : ''
+                        }
                         · toque para ver o recibo
                       </div>
                     </div>
 
                     <div class="qty ${
-                      entry.type === 'IN' ? 'positive' : 'negative'
+                      entry.type === 'IN'
+                        ? 'positive'
+                        : 'negative'
                     }">
                       ${entry.type === 'IN' ? '+' : '-'}
                       ${money.format(val(entry.amount))}
@@ -799,7 +879,10 @@
           `;
 
       document.getElementById('clientCards').innerHTML = cards([
-        ['Clientes cadastrados', state.customers.length],
+        [
+          'Clientes cadastrados',
+          state.customers.length
+        ],
         [
           'Com telefone',
           state.customers.filter(customer => customer.phone).length
@@ -811,7 +894,9 @@
           ? state.customers.map((customer, index) => `
             <div class="row">
               <div class="row-main">
-                <div class="row-title">${esc(customer.name)}</div>
+                <div class="row-title">
+                  ${esc(customer.name)}
+                </div>
 
                 <div class="row-meta">
                   ${
@@ -834,7 +919,9 @@
                 </div>
               </div>
 
-              <button class="danger" data-delete-client="${index}">
+              <button
+                class="danger"
+                data-delete-client="${index}">
                 Excluir
               </button>
             </div>
@@ -851,7 +938,9 @@
 
         <p>Relatório de estoque e caixa</p>
 
-        <h3 class="sub-title">Resumo financeiro</h3>
+        <h3 class="sub-title">
+          Resumo financeiro
+        </h3>
 
         <p>
           Entradas:
@@ -865,20 +954,24 @@
 
         <p>
           Saldo:
-          <b class="${total.balance >= 0 ? 'positive' : 'negative'}">
+          <b class="${
+            total.balance >= 0 ? 'positive' : 'negative'
+          }">
             ${money.format(total.balance)}
           </b>
         </p>
 
-        <h3 class="sub-title">Resumo do estoque</h3>
+        <h3 class="sub-title">
+          Resumo do estoque
+        </h3>
 
         <p>
-          Unidades:
+          Quantidade em estoque:
           <b>${total.units}</b>
         </p>
 
         <p>
-          Valor investido:
+          Valor do estoque:
           <b>${money.format(total.stock)}</b>
         </p>
 
@@ -896,11 +989,9 @@
           state.products.length
             ? `
               <div class="report-line">
-                ${state.products
-                  .map(product =>
-                    `• \({esc(product.name)}: \){val(product.qty)} unidade(s)`
-                  )
-                  .join('\n')}
+                ${state.products.map(product =>
+                  `• \({esc(product.name)}: \){val(product.qty)} unidade(s)`
+                ).join('\n')}
               </div>
             `
             : ''
@@ -913,7 +1004,9 @@
 
     function openModal(html) {
       document.getElementById('modal').innerHTML = html;
-      document.getElementById('modalBackdrop').classList.add('open');
+      document
+        .getElementById('modalBackdrop')
+        .classList.add('open');
     }
 
     let scannerStream = null;
@@ -922,13 +1015,19 @@
 
     function closeModal() {
       closeScanner();
-      document.getElementById('modalBackdrop').classList.remove('open');
+
+      document
+        .getElementById('modalBackdrop')
+        .classList.remove('open');
     }
 
     function closeScanner() {
       stopScanner();
       scannerTarget = null;
-      document.getElementById('scannerBackdrop').classList.remove('open');
+
+      document
+        .getElementById('scannerBackdrop')
+        .classList.remove('open');
     }
 
     function stopScanner() {
@@ -939,7 +1038,10 @@
       scannerFrame = 0;
 
       if (scannerStream) {
-        scannerStream.getTracks().forEach(track => track.stop());
+        scannerStream
+          .getTracks()
+          .forEach(track => track.stop());
+
         scannerStream = null;
       }
     }
@@ -949,6 +1051,7 @@
 
       if (target) {
         target.value = code;
+
         target.dispatchEvent(new Event('input', {
           bubbles: true
         }));
@@ -977,6 +1080,7 @@
 
         <label>
           Ou digite o código
+
           <input
             id="manualBarcode"
             inputmode="numeric"
@@ -1034,14 +1138,15 @@
       }
 
       try {
-        scannerStream = await navigator.mediaDevices.getUserMedia({
-          video: {
-            facingMode: {
-              ideal: 'environment'
-            }
-          },
-          audio: false
-        });
+        scannerStream =
+          await navigator.mediaDevices.getUserMedia({
+            video: {
+              facingMode: {
+                ideal: 'environment'
+              }
+            },
+            audio: false
+          });
 
         video.srcObject = scannerStream;
         await video.play();
@@ -1056,13 +1161,17 @@
           try {
             const found = await detector.detect(video);
 
-            if (found.length && found[0].rawValue) {
+            if (
+              found.length &&
+              found[0].rawValue
+            ) {
               finishScan(found[0].rawValue);
               return;
             }
           } catch (error) {}
 
-          scannerFrame = requestAnimationFrame(detect);
+          scannerFrame =
+            requestAnimationFrame(detect);
         };
 
         detect();
@@ -1089,7 +1198,9 @@
             <div class="scan-tools">
               <input name="sku" id="productSku">
 
-              <button type="button" id="scanProduct">
+              <button
+                type="button"
+                id="scanProduct">
                 📷 Ler câmera
               </button>
             </div>
@@ -1097,6 +1208,7 @@
 
           <label>
             Quantidade inicial
+
             <input
               name="qty"
               type="number"
@@ -1107,6 +1219,7 @@
 
           <label>
             Custo unitário (R$)
+
             <input
               name="cost"
               type="number"
@@ -1117,6 +1230,7 @@
 
           <label>
             Preço de venda (R$)
+
             <input
               name="price"
               type="number"
@@ -1126,7 +1240,10 @@
           </label>
 
           <div class="modal-actions">
-            <button type="button" class="danger" data-close>
+            <button
+              type="button"
+              class="danger"
+              data-close>
               Cancelar
             </button>
 
@@ -1137,30 +1254,35 @@
         </form>
       `);
 
-      document.getElementById('scanProduct').onclick = () =>
-        scanInto(document.getElementById('productSku'));
+      document.getElementById('scanProduct').onclick =
+        () => scanInto(
+          document.getElementById('productSku')
+        );
 
-      document.getElementById('productForm').onsubmit = event => {
-        event.preventDefault();
+      document.getElementById('productForm').onsubmit =
+        event => {
+          event.preventDefault();
 
-        const form = new FormData(event.target);
+          const form = new FormData(event.target);
 
-        state.products.push({
-          name: form.get('name').trim(),
-          sku: form.get('sku').trim(),
-          qty: val(form.get('qty')),
-          cost: val(form.get('cost')),
-          price: val(form.get('price'))
-        });
+          state.products.push({
+            name: form.get('name').trim(),
+            sku: form.get('sku').trim(),
+            qty: val(form.get('qty')),
+            cost: val(form.get('cost')),
+            price: val(form.get('price'))
+          });
 
-        save();
-        closeModal();
-      };
+          save();
+          closeModal();
+        };
     }
 
     function newSale() {
       if (!state.products.length) {
-        alert('Cadastre um produto antes de registrar uma venda.');
+        alert(
+          'Cadastre um produto antes de registrar uma venda.'
+        );
         return;
       }
 
@@ -1180,7 +1302,11 @@
           .map((customer, index) => `
             <option value="${index}">
               ${esc(customer.name)}
-              ${customer.phone ? ' · ' + esc(customer.phone) : ''}
+              ${
+                customer.phone
+                  ? ' · ' + esc(customer.phone)
+                  : ''
+              }
             </option>
           `)
           .join('');
@@ -1198,7 +1324,9 @@
                 id="saleBarcode"
                 placeholder="Digite ou leia com a câmera">
 
-              <button type="button" id="scanSale">
+              <button
+                type="button"
+                id="scanSale">
                 📷 Ler câmera
               </button>
             </div>
@@ -1206,7 +1334,10 @@
 
           <label>
             Produto
-            <select name="productIndex" id="saleProduct">
+
+            <select
+              name="productIndex"
+              id="saleProduct">
               ${productOptions}
             </select>
           </label>
@@ -1215,13 +1346,16 @@
             Cliente
             <span class="hint">(opcional)</span>
 
-            <select name="clientIndex" id="saleClient">
+            <select
+              name="clientIndex"
+              id="saleClient">
               ${clientOptions}
             </select>
           </label>
 
           <label>
             Quantidade
+
             <input
               name="qty"
               type="number"
@@ -1235,7 +1369,10 @@
           </p>
 
           <div class="modal-actions">
-            <button type="button" class="danger" data-close>
+            <button
+              type="button"
+              class="danger"
+              data-close>
               Cancelar
             </button>
 
@@ -1246,14 +1383,18 @@
         </form>
       `);
 
-      const barcode = document.getElementById('saleBarcode');
-      const select = document.getElementById('saleProduct');
+      const barcode =
+        document.getElementById('saleBarcode');
+
+      const select =
+        document.getElementById('saleProduct');
 
       const matchProduct = () => {
-        const productIndex = state.products.findIndex(product =>
-          product.sku &&
-          product.sku === barcode.value.trim()
-        );
+        const productIndex =
+          state.products.findIndex(product =>
+            product.sku &&
+            product.sku === barcode.value.trim()
+          );
 
         if (productIndex >= 0) {
           select.value = productIndex;
@@ -1267,55 +1408,72 @@
         }
       };
 
-      barcode.addEventListener('input', matchProduct);
+      barcode.addEventListener(
+        'input',
+        matchProduct
+      );
 
-      document.getElementById('scanSale').onclick = () =>
-        scanInto(barcode);
+      document.getElementById('scanSale').onclick =
+        () => scanInto(barcode);
 
-      document.getElementById('saleForm').onsubmit = event => {
-        event.preventDefault();
+      document.getElementById('saleForm').onsubmit =
+        event => {
+          event.preventDefault();
 
-        const form = new FormData(event.target);
-        const product = state.products[
-          Number(form.get('productIndex'))
-        ];
+          const form = new FormData(event.target);
 
-        const quantity = val(form.get('qty'));
-        const clientIndex = form.get('clientIndex');
+          const product =
+            state.products[
+              Number(form.get('productIndex'))
+            ];
 
-        const client =
-          clientIndex === ''
-            ? null
-            : state.customers[Number(clientIndex)];
+          const quantity =
+            val(form.get('qty'));
 
-        if (
-          quantity < 1 ||
-          quantity > product.qty
-        ) {
-          alert('Quantidade maior que o estoque disponível.');
-          return;
-        }
+          const clientIndex =
+            form.get('clientIndex');
 
-        product.qty -= quantity;
+          const client =
+            clientIndex === ''
+              ? null
+              : state.customers[
+                  Number(clientIndex)
+                ];
 
-        state.cash.push({
-          type: 'IN',
-          description:
-            'Venda: ' +
-            product.name +
-            ' (' +
-            quantity +
-            ' un.)',
-          amount: val(product.price) * quantity,
-          date: new Date().toLocaleString('pt-BR'),
-          barcode: product.sku || '',
-          customer: client ? client.name : ''
-        });
+          if (
+            quantity < 1 ||
+            quantity > product.qty
+          ) {
+            alert(
+              'Quantidade maior que o estoque disponível.'
+            );
+            return;
+          }
 
-        save();
-        closeModal();
-        receipt(state.cash.length - 1);
-      };
+          product.qty -= quantity;
+
+          state.cash.push({
+            type: 'IN',
+            description:
+              'Venda: ' +
+              product.name +
+              ' (' +
+              quantity +
+              ' un.)',
+            amount:
+              val(product.price) * quantity,
+            date:
+              new Date().toLocaleString('pt-BR'),
+            barcode:
+              product.sku || '',
+            customer:
+              client ? client.name : ''
+          });
+
+          save();
+          closeModal();
+          receipt(state.cash.length - 1);
+        };
     }
 
     function moveStock(index) {
@@ -1332,14 +1490,21 @@
         <form id="moveForm">
           <label>
             Tipo
+
             <select name="type">
-              <option value="IN">Entrada</option>
-              <option value="OUT">Saída</option>
+              <option value="IN">
+                Entrada
+              </option>
+
+              <option value="OUT">
+                Saída
+              </option>
             </select>
           </label>
 
           <label>
             Quantidade
+
             <input
               name="qty"
               type="number"
@@ -1349,7 +1514,10 @@
           </label>
 
           <div class="modal-actions">
-            <button type="button" class="danger" data-close>
+            <button
+              type="button"
+              class="danger"
+              data-close>
               Cancelar
             </button>
 
@@ -1360,28 +1528,32 @@
         </form>
       `);
 
-      document.getElementById('moveForm').onsubmit = event => {
-        event.preventDefault();
+      document.getElementById('moveForm').onsubmit =
+        event => {
+          event.preventDefault();
 
-        const form = new FormData(event.target);
-        const quantity = val(form.get('qty'));
+          const form = new FormData(event.target);
+          const quantity =
+            val(form.get('qty'));
 
-        if (
-          form.get('type') === 'OUT' &&
-          quantity > product.qty
-        ) {
-          alert('A saída não pode ser maior que o estoque.');
-          return;
-        }
+          if (
+            form.get('type') === 'OUT' &&
+            quantity > product.qty
+          ) {
+            alert(
+              'A saída não pode ser maior que o estoque.'
+            );
+            return;
+          }
 
-        product.qty +=
-          form.get('type') === 'IN'
-            ? quantity
-            : -quantity;
+          product.qty +=
+            form.get('type') === 'IN'
+              ? quantity
+              : -quantity;
 
-        save();
-        closeModal();
-      };
+          save();
+          closeModal();
+        };
     }
 
     function newClient() {
@@ -1396,6 +1568,7 @@
 
           <label>
             Telefone / WhatsApp
+
             <input
               name="phone"
               type="tel"
@@ -1413,7 +1586,10 @@
           </label>
 
           <div class="modal-actions">
-            <button type="button" class="danger" data-close>
+            <button
+              type="button"
+              class="danger"
+              data-close>
               Cancelar
             </button>
 
@@ -1424,21 +1600,22 @@
         </form>
       `);
 
-      document.getElementById('clientForm').onsubmit = event => {
-        event.preventDefault();
+      document.getElementById('clientForm').onsubmit =
+        event => {
+          event.preventDefault();
 
-        const form = new FormData(event.target);
+          const form = new FormData(event.target);
 
-        state.customers.push({
-          name: form.get('name').trim(),
-          phone: form.get('phone').trim(),
-          email: form.get('email').trim(),
-          address: form.get('address').trim()
-        });
+          state.customers.push({
+            name: form.get('name').trim(),
+            phone: form.get('phone').trim(),
+            email: form.get('email').trim(),
+            address: form.get('address').trim()
+          });
 
-        save();
-        closeModal();
-      };
+          save();
+          closeModal();
+        };
     }
 
     function newCash() {
@@ -1448,14 +1625,21 @@
         <form id="cashForm">
           <label>
             Tipo
+
             <select name="type">
-              <option value="IN">Entrada</option>
-              <option value="OUT">Saída</option>
+              <option value="IN">
+                Entrada
+              </option>
+
+              <option value="OUT">
+                Saída
+              </option>
             </select>
           </label>
 
           <label>
             Descrição
+
             <input
               name="description"
               placeholder="Ex.: Venda no balcão"
@@ -1464,6 +1648,7 @@
 
           <label>
             Valor (R$)
+
             <input
               name="amount"
               type="number"
@@ -1473,7 +1658,10 @@
           </label>
 
           <div class="modal-actions">
-            <button type="button" class="danger" data-close>
+            <button
+              type="button"
+              class="danger"
+              data-close>
               Cancelar
             </button>
 
@@ -1484,21 +1672,25 @@
         </form>
       `);
 
-      document.getElementById('cashForm').onsubmit = event => {
-        event.preventDefault();
+      document.getElementById('cashForm').onsubmit =
+        event => {
+          event.preventDefault();
 
-        const form = new FormData(event.target);
+          const form = new FormData(event.target);
 
-        state.cash.push({
-          type: form.get('type'),
-          description: form.get('description').trim(),
-          amount: val(form.get('amount')),
-          date: new Date().toLocaleString('pt-BR')
-        });
+          state.cash.push({
+            type: form.get('type'),
+            description:
+              form.get('description').trim(),
+            amount:
+              val(form.get('amount')),
+            date:
+              new Date().toLocaleString('pt-BR')
+          });
 
-        save();
-        closeModal();
-      };
+          save();
+          closeModal();
+        };
     }
 
     function receipt(index) {
@@ -1512,7 +1704,9 @@
 
       openModal(`
         <div class="receipt">
-          <h2>${esc(state.storeName || 'Minha Loja')}</h2>
+          <h2>
+            ${esc(state.storeName || 'Minha Loja')}
+          </h2>
 
           <div class="muted">
             RECIBO DE LANÇAMENTO
@@ -1541,7 +1735,9 @@
             ${esc(entry.date)}
           </div>
 
-          <div class="total ${isInput ? 'positive' : 'negative'}">
+          <div class="total ${
+            isInput ? 'positive' : 'negative'
+          }">
             ${isInput ? '+' : '-'}
             ${money.format(val(entry.amount))}
           </div>
@@ -1551,11 +1747,15 @@
           </div>
 
           <div class="modal-actions">
-            <button class="secondary" id="printReceipt">
+            <button
+              class="secondary"
+              id="printReceipt">
               Imprimir
             </button>
 
-            <button class="primary" data-close>
+            <button
+              class="primary"
+              data-close>
               Fechar
             </button>
           </div>
@@ -1625,7 +1825,11 @@
         closeModal();
       }
 
-      if (event.target.matches('[data-close-scanner]')) {
+      if (
+        event.target.matches(
+          '[data-close-scanner]'
+        )
+      ) {
         closeScanner();
       }
 
@@ -1643,7 +1847,9 @@
       }
 
       if (event.target.dataset.move !== undefined) {
-        moveStock(Number(event.target.dataset.move));
+        moveStock(
+          Number(event.target.dataset.move)
+        );
       }
 
       if (event.target.closest('[data-receipt]')) {
@@ -1673,34 +1879,36 @@
         }
       });
 
-    document.getElementById('editStore').onclick = () => {
-      const name = prompt(
-        'Nome da loja:',
-        state.storeName || 'Minha Loja'
-      );
+    document.getElementById('editStore').onclick =
+      () => {
+        const name = prompt(
+          'Nome da loja:',
+          state.storeName || 'Minha Loja'
+        );
 
-      if (name && name.trim()) {
-        state.storeName = name.trim();
-        save();
-      }
-    };
-
-    document.getElementById('logoInput').onchange = event => {
-      const file = event.target.files[0];
-
-      if (!file) {
-        return;
-      }
-
-      const reader = new FileReader();
-
-      reader.onload = () => {
-        state.logo = reader.result;
-        save();
+        if (name && name.trim()) {
+          state.storeName = name.trim();
+          save();
+        }
       };
 
-      reader.readAsDataURL(file);
-    };
+    document.getElementById('logoInput').onchange =
+      event => {
+        const file = event.target.files[0];
+
+        if (!file) {
+          return;
+        }
+
+        const reader = new FileReader();
+
+        reader.onload = () => {
+          state.logo = reader.result;
+          save();
+        };
+
+        reader.readAsDataURL(file);
+      };
 
     document.getElementById('printReport').onclick =
       () => window.print();
